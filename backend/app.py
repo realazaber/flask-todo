@@ -26,19 +26,22 @@ class Todo(db.Model):
 
 @app.route('/', methods=['GET'])
 def getTodos():
-    # Query all todos from the database
+    
     todos = Todo.query.all()
 
-    # Serialize the todos to a list of dictionaries
-    serialized_todos = [{
-        'id': todo.id,
-        'title': todo.title,
-        'description': todo.description,
-        'completed': todo.completed
-    } for todo in todos]
+    if len(todos) > 0:
+        serialized_todos = [{
+            'id': todo.id,
+            'title': todo.title,
+            'description': todo.description,
+            'completed': todo.completed
+        } for todo in todos]
 
-    # Return the serialized todos as JSON response
-    return jsonify(serialized_todos)
+        return jsonify(serialized_todos)
+    else:
+        return jsonify({"message": "No todos found"})
+
+
 
 @app.route('/create', methods=['POST'])
 def createTodo():
