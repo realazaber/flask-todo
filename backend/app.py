@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv  
 import os
@@ -42,7 +42,18 @@ def getTodos():
 
 @app.route('/create', methods=['POST'])
 def createTodo():
-    return "create todo"
+    data = request.get_json()
+
+    title = data.get('title')
+    description = data.get('description')
+    completed = data.get('completed')
+
+    new_todo = Todo(title=title, description=description, completed=completed)
+
+    db.session.add(new_todo)
+    db.session.commit()
+
+    return jsonify({'message': 'Todo created successfully!'})
 
 @app.route('/edit', methods=['PUT'])
 def editTodo():
