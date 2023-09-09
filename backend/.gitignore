@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.swp
+
+# Virtual Environment
+venv/
+env/
+
+# Webpack build files (if using React or another front-end framework)
+build/
+node_modules/
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+
+# Logs
+*.log
+
+# Local configuration files
+instance/
+config.py
+
+# Environment variables (if using .env files)
+.env
+
+# Ignore database migrations
+/migrations/
