@@ -59,9 +59,16 @@ def createTodo():
 def editTodo():
     return "edit Todo"
 
-@app.route('/delete', methods=['DELETE'])
-def deleteTodo():
-    return "delete Todo"
+@app.route('/delete/<int:id>', methods=['DELETE'])
+def deleteTodo(id):
+    todo = Todo.query.get(id)
+    if not todo:
+        return jsonify({'error': 'Todo not found'}), 404
+
+    db.session.delete(todo)
+    db.session.commit()
+
+    return jsonify({'message': 'Todo deleted successfully!'})
 
 if __name__ == "__main__":
     app.run(debug=True)
