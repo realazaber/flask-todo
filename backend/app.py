@@ -12,7 +12,6 @@ DB_NAME = os.getenv("DB_NAME")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
 
-# Initialize SQLAlchemy with the Flask app
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -58,9 +57,25 @@ def createTodo():
 
     return jsonify({'message': 'Todo created successfully!'})
 
-@app.route('/edit', methods=['PUT'])
-def editTodo():
-    return "edit Todo"
+@app.route('/edit/<int:id>', methods=['PUT'])
+def editTodo(id):
+    todo = Todo.query.get(id)
+
+    if not todo:
+        return jsonify({'error': 'Todo not found'}), 404
+
+    data = request.get_json()
+
+    if 'title' in data:
+        todo.title = data['title']
+    if 'description' in data:
+        todo.description = data['description']
+    if 'completed' in data:
+        todo.completed = data['completed']
+
+    db.session.commit()
+
+    return jsonify({'message': 'Todo edited successfully!'})
 
 @app.route('/delete/<int:id>', methods=['DELETE'])
 def deleteTodo(id):
