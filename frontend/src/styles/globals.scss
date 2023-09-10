@@ -4,6 +4,56 @@
 
 @layer components {
   * {
-    @apply bg-red-500;
+    body {
+      @apply bg-slate-900 h-[100vh] duration-300;
+
+      #__next {
+        @apply flex flex-col h-full;
+      }
+
+      section {
+        @apply w-4/5 mx-auto flex flex-col justify-center items-center;
+
+        .container {
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6,
+          span,
+          p {
+            @apply text-slate-50;
+          }
+
+          h1,
+          h2,
+          h3 {
+            @apply font-bold;
+          }
+
+          form {
+            @apply flex flex-col gap-3;
+            input,
+            textarea {
+              @apply p-3 rounded-md bg-pri text-sec resize-none focus:border-4 focus:border-sec;
+            }
+          }
+
+          @apply flex flex-col justify-center items-center;
+          .btn {
+            @apply py-3 px-5 rounded-md border-[1px] font-bold;
+          }
+
+          .btn-pri {
+            @apply text-sec bg-pri border-pri;
+          }
+
+          .btn-danger {
+            @apply text-pri bg-sec border-sec;
+          }
+        }
+      }
+    }
   }
 }
