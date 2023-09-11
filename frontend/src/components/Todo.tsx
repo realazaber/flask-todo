@@ -26,10 +26,10 @@ const Todo = (props: ITodo) => {
   };
 
   return (
-    <div className="bg-pri rounded-md m-3 flex flex-row justify-between items-center min-w-[30%] max-w-[100%]">
+    <div className="bg-pri rounded-md m-3 flex flex-col sm:flex-row justify-between items-center sm:min-w-[30%] sm:max-w-[45%]">
       <div className="p-3">
         <h3 className="text-sec">{props.title}</h3>
-        <p>{props.description}</p>
+        <p className="whitespace-normal">{props.description}</p>
       </div>
       <div className="p-3">
         <input
@@ -41,7 +41,7 @@ const Todo = (props: ITodo) => {
       </div>
       <button
         onClick={handleDeleteClick}
-        className="bg-sec text-white flex justify-center items-center h-full py-3 px-5 rounded-r-md text-2xl font-bold"
+        className="bg-sec text-white w-full sm:w-auto flex justify-center items-center h-full py-3 px-5 rounded-b-md sm:rounded-b-none sm:rounded-br-md sm:rounded-r-md text-2xl font-bold"
       >
         X
       </button>
