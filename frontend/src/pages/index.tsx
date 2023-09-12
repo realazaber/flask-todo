@@ -1,7 +1,8 @@
 import TodosList from "@/components/TodosList";
-import React, { Fragment, useState, useContext } from "react"; // Import useContext
+import React, { Fragment, useState, useContext } from "react";
 import { baseUrl } from "@/helper";
 import { TodoContext } from "@/pages/_app";
+import { ITodo } from "@/interfaces/todo";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ const Home = (props: Props) => {
     description: "",
   });
 
-  const { addTodo } = useContext(TodoContext); // Use useContext to access the addTodo function
+  const { addTodo } = useContext(TodoContext);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,15 +26,14 @@ const Home = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newTodo = {
+    const newTodo: ITodo = {
       title: formData.title,
       description: formData.description,
+      completed: false,
     };
 
-    // Add the new todo using the addTodo function
     addTodo(newTodo);
 
-    // Clear the form
     setFormData({ title: "", description: "" });
   };
 
