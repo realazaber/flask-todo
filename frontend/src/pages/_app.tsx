@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
-import { Fragment, useState, useEffect, createContext } from "react"; // Import createContext
+import { Fragment, useState, useEffect, createContext } from "react";
 import { baseUrl } from "@/helper";
 import { ITodo } from "@/interfaces/todo";
 
@@ -33,10 +33,8 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const addTodo = (todo: ITodo) => {
-    // Add the new todo to the context state
     setTodos((prevTodos) => [...prevTodos, todo]);
 
-    // Send a POST request to create a new todo
     fetch(baseUrl + "/create", {
       method: "POST",
       headers: {
@@ -55,10 +53,8 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   const deleteTodo = (id: number) => {
-    // Delete the todo from the context state
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
 
-    // Send a DELETE request to delete the todo
     fetch(`${baseUrl}/delete/${id}`, {
       method: "DELETE",
     })

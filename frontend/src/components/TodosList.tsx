@@ -4,7 +4,7 @@ import { ITodo } from "../interfaces/todo";
 import { TodoContext } from "@/pages/_app";
 
 const TodosList = () => {
-  const { todos } = useContext(TodoContext) || { todos: [] }; // Initialize with an empty array when the context is undefined
+  const { todos } = useContext(TodoContext) || { todos: [] };
 
   return (
     <section className="my-3">

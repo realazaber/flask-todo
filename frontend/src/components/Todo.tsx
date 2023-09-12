@@ -1,4 +1,4 @@
-import React, { useContext } from "react"; // Import useContext
+import React, { useContext } from "react"; 
 import { ITodo } from "@/interfaces/todo";
 import { baseUrl } from "@/helper";
 import { useRouter } from "next/router";
@@ -6,7 +6,7 @@ import { TodoContext } from "@/pages/_app";
 
 const Todo = (props: ITodo) => {
   const router = useRouter();
-  const { deleteTodo } = useContext(TodoContext); // Use useContext to access the deleteTodo function
+  const { deleteTodo } = useContext(TodoContext); 
 
   const handleDeleteClick = () => {
     fetch(`${baseUrl}/delete/${props.id}`, {
@@ -14,7 +14,7 @@ const Todo = (props: ITodo) => {
     })
       .then((response) => {
         if (response.ok) {
-          deleteTodo(props.id); // Delete the todo from the context state
+          deleteTodo(props.id); 
           console.log("Todo deleted successfully");
         } else {
           console.error("Failed to delete todo");
