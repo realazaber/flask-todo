@@ -7,10 +7,12 @@ import { ITodo } from "@/interfaces/todo";
 
 export const TodoContext = createContext<{
   todos: ITodo[];
+  fetchTodos: () => void;
   addTodo: (todo: ITodo) => void;
   deleteTodo: (id: number) => void;
 }>({
   todos: [],
+  fetchTodos: () => {},
   addTodo: () => {},
   deleteTodo: () => {},
 });
