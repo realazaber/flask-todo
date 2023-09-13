@@ -5,7 +5,8 @@ from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="http://localhost:3000")  
+
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
@@ -88,7 +89,7 @@ def deleteTodo(id):
     db.session.delete(todo)
     db.session.commit()
 
-    return jsonify({'message': 'Todo deleted successfully!'})
+    return jsonify({'message': 'Todo deleted successfully!'}, 200)
 
 if __name__ == "__main__":
     app.run(debug=True)
