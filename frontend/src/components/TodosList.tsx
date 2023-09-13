@@ -4,7 +4,7 @@ import { ITodo } from "../interfaces/todo";
 import { TodoContext } from "@/pages/_app";
 
 const TodosList = () => {
-  const { todos } = useContext(TodoContext) || { todos: [] };
+  const { todos, fetchTodos } = useContext(TodoContext) || { todos: [] };
 
   return (
     <section className="my-3">
@@ -20,6 +20,7 @@ const TodosList = () => {
                 title={todo.title}
                 description={todo.description}
                 completed={todo.completed}
+                fetchTodos={fetchTodos}
               />
             ))}
           </div>
